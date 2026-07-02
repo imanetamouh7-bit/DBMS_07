@@ -118,12 +118,12 @@ Exit the REPL:
 **Question 1.1:** In the REPL, typing `2 ** 10` without `print` still shows
 `1024`. Why does this work in the REPL but *not* in a script file?
 
-> *Your answer:*
+Im REPL wird das Ergebnis automatisch gezeigt. Im Skript braucht man print()
 
 **Question 1.2:** The f-string format specifier `:.2f` controls how `price`
 is displayed. What does it mean, and what would `:.4f` produce for `18.9`?
 
-> *Your answer:*
+.2f zeigt 2 Nachkommastellen. .4f zeigt 18.9000.
 
 ---
 
@@ -167,13 +167,14 @@ Exit the REPL:
 can write `sqrt(144)` without the `math.` prefix. What is the drawback of
 this style compared to `import math`?
 
-> *Your answer:*
+Ohne math. ist der Code weniger klar. Namen können gleich sein.
 
 **Question 2.2:** The standard library is always available — it requires no
 installation. Name two other standard library modules (not `math`) and
 describe in one sentence what each one is used for.
 
-> *Your answer:*
+os: Arbeitet mit Dateien und Ordnern.
+datetime: Arbeitet mit Datum und Uhrzeit.
 
 ---
 
@@ -251,13 +252,14 @@ it only under `if __name__ == "__main__"`. What is `__name__` set to when the
 file is run directly? What is it set to when the file is *imported* by another
 module — and why does this distinction matter?
 
-> *Your answer:*
+Direkt starten: __name__ = "__main__".
+Importieren: __name__ ist der Modulname. So startet main() nicht automatisch.
 
 **Question 3.2:** The `kreisflaeche` function could be defined without
 importing `math` by hard-coding `3.14159` instead of `math.pi`. Give one
 concrete reason why using `math.pi` is preferable.
 
-> *Your answer:*
+math.pi ist genauer als 3.14159.
 
 ---
 
@@ -510,13 +512,15 @@ git push
 `uv.lock` be committed to version control while generated files like `.venv/`
 should not?
 
-> *Your answer:*
+pyproject.toml enthält die Projektinformationen.
+uv.lock speichert die genauen Versionen.
+.venv wird nicht gespeichert, weil es lokal ist.
 
 **Question 4.2:** `uv run python3 berechnung.py` uses the virtual
 environment's Python. What would happen if you ran `python3 berechnung.py`
 directly (without `uv run`) and `rich` is not installed system-wide?
 
-> *Your answer:*
+Ohne uv run findet Python rich nicht. Es gibt einen Fehler.
 
 ---
 
@@ -648,20 +652,20 @@ git push
 query. What is the role of a cursor in the database connection model?
 Why is one connection able to hold multiple cursors simultaneously?
 
-> *Your answer:*
+Der Cursor sendet SQL an die Datenbank und liest die Ergebnisse. Eine Verbindung kann mehrere Cursor haben.
 
 **Question 5.2:** The connection parameters (username, password, host) are
 written directly in the script as `DB_CONFIG`. Why is this a security problem
 in a real project? Name one common alternative for storing credentials outside
 the source code.
 
-> *Your answer:*
+Passwörter im Code sind nicht sicher. Besser sind Umgebungsvariablen (.env).
 
 **Question 5.3:** `cursor.fetchall()` returns a list of tuples. The script
 accesses `row[0]`, `row[1]`, etc. by index. What is the risk of this approach,
 and which `psycopg2` cursor subclass would return named columns instead?
 
-> *Your answer:*
+Indexe können falsch sein. RealDictCursor gibt Spaltennamen zurück.
 
 ---
 
@@ -773,12 +777,12 @@ git push
 automatically. What standard does it use to describe the API, and what
 advantage does machine-readable API documentation have over a PDF?
 
-> *Your answer:*
+FastAPI nutzt OpenAPI. Die Dokumentation kann automatisch gelesen und getestet werden.
 
 **Question 6.2:** The `--reload` flag is useful during development but should
 not be used in production. Why?
 
-> *Your answer:*
+--reload startet den Server immer neu. Das ist langsam und nur für Entwicklung
 
 ---
 
@@ -955,20 +959,20 @@ git push
 What would be the security risk of building the SQL string by concatenation
 (`"VALUES ('" + mitglied.nachname + "'...)`)? Name the attack this prevents.
 
-> *Your answer:*
+Das schützt vor SQL Injection.
 
 **Question 7.2:** The `RealDictCursor` in endpoints 1 and 2 returns each row
 as a dictionary instead of a tuple. Why does this make the API response more
 useful to a client that receives the JSON output?
 
-> *Your answer:*
+Ein Dictionary hat Spaltennamen. Das JSON ist einfacher zu lesen.
 
 **Question 7.3:** A caller of `GET /ausleihen/offen` receives a list of open
 loans without knowing anything about the underlying table structure, join logic,
 or database credentials. Name two concrete advantages this abstraction provides
 compared to giving every caller direct database access.
 
-> *Your answer:*
+Der Benutzer braucht kein SQL. Die Datenbank bleibt besser geschützt.
 
 ---
 
@@ -980,7 +984,7 @@ can call `/ausleihen/offen` without knowing SQL. What is the general software
 engineering principle behind this, and where else in a typical application
 stack does the same principle appear?
 
-> *Your answer:*
+Das heißt Separation of Concerns. Das gibt es auch zwischen Frontend, Backend und Datenbank.
 
 **Question B – Stateless HTTP vs. database connections:**  
 Each of the three endpoints opens a new database connection and closes it after
@@ -988,7 +992,7 @@ the query. In a production system with hundreds of simultaneous requests this
 would be inefficient. What is the standard solution, and which Python library
 provides it for `psycopg2`?
 
-> *Your answer:*
+Man nutzt einen Connection Pool. In psycopg2 heißt er psycopg2.pool.
 
 **Question C – Authentication:**  
 The API currently has no access control — anyone who can reach the server on
@@ -997,7 +1001,7 @@ to a FastAPI application are **JWT tokens** (stateless, validated by the API
 itself) and **Keycloak** (external identity provider, acting as middleware).
 What is the main operational difference between the two approaches?
 
-> *Your answer:*
+Bei JWT prüft die API den Token selbst. Bei Keycloak macht Keycloak die Anmeldung.
 
 **Question D – The abstraction chain:**  
 You have now built a complete chain: raw data in PostgreSQL → SQL query in
@@ -1005,7 +1009,7 @@ Python → JSON response from FastAPI → curl client. Describe in two sentences
 what each link in this chain contributes and why removing any one of them
 would make the system harder to use or maintain.
 
-> *Your answer:*
+PostgreSQL speichert die Daten. Python fragt die Daten ab. FastAPI macht JSON. curl zeigt die Antwort. Ohne einen Teil ist das System schwerer zu benutzen.
 
 ---
 
