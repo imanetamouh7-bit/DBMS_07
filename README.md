@@ -755,7 +755,7 @@ from your code.
 > **Screenshot 7:** Take a screenshot showing the `curl` response and the
 > uvicorn startup log in the other terminal.
 >
-> `[insert screenshot]`
+![Screenshot 7](screenshot7.png)
 
 ### Step 4 – Commit
 
