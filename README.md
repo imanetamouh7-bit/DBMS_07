@@ -937,8 +937,8 @@ Try posting the same e-mail a second time and observe the 409 error response.
 
 > **Screenshot 8:** Take a screenshot showing the curl output for all three
 > endpoints, including the 409 error on the duplicate POST.
->
 ![Screenshot 8](screenshot8.png)
+
 
 ### Step 4 – Commit
 
