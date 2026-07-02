@@ -632,7 +632,7 @@ uv run python3 abfrage.py
 
 > **Screenshot 6:** Take a screenshot showing the query result table.
 >
-> `[insert screenshot]`
+![Screenshot 6](screenshot6.png)
 
 ### Step 4 – Commit
 
