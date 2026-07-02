@@ -234,7 +234,7 @@ python3 berechnung.py
 > **Screenshot 3:** Take a screenshot showing the terminal output of
 > `python3 berechnung.py`.
 >
-> `[insert screenshot]`
+![Screenshot 3](screenshot3.png)
 
 ### Step 4 – Commit
 
