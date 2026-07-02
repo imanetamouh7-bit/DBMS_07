@@ -417,7 +417,7 @@ uv --version
 
 > **Screenshot 4:** Take a screenshot showing the `uv --version` output.
 >
-> `[insert screenshot]`
+![Screenshot 4](screenshot4.png)
 
 ---
 
