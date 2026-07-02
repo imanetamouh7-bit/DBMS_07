@@ -58,7 +58,7 @@ pg_isready
 
 > **Screenshot 1:** Take a screenshot showing all three version/status checks.
 >
-> `[insert screenshot]`
+![Screenshot 1](screenshot1.png)
 
 ---
 
