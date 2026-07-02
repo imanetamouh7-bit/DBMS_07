@@ -111,7 +111,7 @@ Exit the REPL:
 > **Screenshot 2:** Take a screenshot showing all REPL interactions above,
 > including the f-string output.
 >
-> `[insert screenshot]`
+![Screenshot 2](screenshot2.png)
 
 ### Questions for Section 1
 
